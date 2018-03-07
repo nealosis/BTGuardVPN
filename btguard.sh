@@ -1,13 +1,13 @@
 #!/bin/bash
 #: Title: btguard.sh
-#: Author: Neal T. Bailey <neal.bailey@hp.com>
+#: Author: Neal T. Bailey <nealosis@gmail.com>
 #: Date: 07/10/2015
 #: Updated: 03/06/2018
 #: Purpose: Create a split VPN tunnel
 #
 #: Usage: ./btguard [options]
 #: Options:
-#:  -s,		 : start the VPN split tunnel
+#:  -s,	     : start the VPN split tunnel
 #:  -t,      : do not make any changes on the server
 #:  -l,      : create a new log file instead of appending
 #:  -o,      : send stdout/stderr messages to the console along with the log
@@ -38,22 +38,22 @@
 # https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 #
 # ----------------------------------------------------------------------
-MAINIP=192.168.2.3			# Local IP address
+MAINIP=192.168.2.3	    # Local IP address
 GATEWAYIP=192.168.2.254     # Local Gateway (router) IP address
-SUBNET=192.168.2.0/24		# Local Subnet Mask
-OPENDNS=209.222.18.218		# OpenDNS 
-GOOGDNS=8.8.8.8				# Google DNS
+SUBNET=192.168.2.0/24	    # Local Subnet Mask
+OPENDNS=209.222.18.218	    # OpenDNS 
+GOOGDNS=8.8.8.8		    # Google DNS
 
 VPN_CWD="/etc/openvpn"                     # BTGuard working Directory
 BTGUARD_CONF="$VPN_CWD/btguard.conf"	   # BTGuard config file 
-BTGUARD_CRED="$VPN_CWD/login.txt"		   # BTGuard credentials file
+BTGUARD_CRED="$VPN_CWD/login.txt"	   # BTGuard credentials file
 VPN_CMD="openvpn --config $BTGUARD_CONF --auth-user-pass $BTGUARD_CRED --script-security 2"
 
-TORRENT_SERVICE="transmission-daemon"		# Optional torrent daemon
-TORRENT_SERVICE_INSTALLED="true"			# Flag to indicate whether to do torrent steps
-APPEND_LOG="true"							# Append to existing log file
-STDOUT_LOG_ONLY="true"						# Send messages to terminal and log file
-TEST_RUN="false"							# Simulate tasks but do not execute them
+TORRENT_SERVICE="transmission-daemon"	# Optional torrent daemon
+TORRENT_SERVICE_INSTALLED="true"	# Flag to indicate whether to do torrent steps
+APPEND_LOG="true"			# Append to existing log file
+STDOUT_LOG_ONLY="true"			# Send messages to terminal and log file
+TEST_RUN="false"			# Simulate tasks but do not execute them
 
 # Metadata
 scriptname=${0##*/}
@@ -66,7 +66,7 @@ version=1.0.0
 author="Neal T. Bailey"
 copyright="Baileysoft Solutions"
 
-LOGFILE="/var/log/$scriptname.log"			# Log file path
+LOGFILE="/var/log/$scriptname.log"	 # Log file path
 
 # Add admin bin to current PATH
 export PATH=$PATH:/sbin
@@ -262,10 +262,3 @@ else
   log "Error: Script tasks failed."
   exit 1
 fi
-
-# ToDo: Add CLI option to close the tunnel
-# sudo /etc/init.d/openvpn stop
-# lsof -i | grep openvpn # Find the process if its hung
-# kill -9 <PID> # kill the proccess(s) by its PID
-# sudo /etc/init.d/openvpn start # Restart service (if applicable)
-#
