@@ -75,7 +75,7 @@ Examples:
 
 **NOTE:** You must be an administrator to execute the script!
 
-## Creating the split tunnel
+### Creating the split tunnel
 
 ```
 sudo ./btguard -so
